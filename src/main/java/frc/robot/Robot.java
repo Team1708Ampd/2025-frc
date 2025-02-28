@@ -62,8 +62,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    System.out.println("wrist encoder: " + coralSub.wristEncoder.get());
-    System.out.println("Elevator encoder: " + coralSub.elevatorEncoder.get());
+    // System.out.println("wrist encoder: " + coralSub.wristEncoder.get());
+    // System.out.println("Elevator encoder: " + coralSub.elevatorEncoder.get());
+    System.out.println("Left Actuator " + climberSub.leftActuator.getPosition());
+    System.out.println("Right Actuator " + climberSub.rightActuator.getPosition());
   }
 
   @Override

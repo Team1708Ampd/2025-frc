@@ -14,15 +14,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ClimberSub extends SubsystemBase {
 
   SparkMax climber;
-  PWM leftActuator;
-  PWM rightActuator;
+  public PWM leftActuator;
+  public PWM rightActuator;
   Servo climbBrake;
 
   /** Creates a new ClimberSub. */
   public ClimberSub() {
     climber = new SparkMax(14, MotorType.kBrushless);
     leftActuator = new PWM(3);
+    leftActuator.setZeroLatch();
     rightActuator = new PWM(1);
+    rightActuator.setZeroLatch();
     climbBrake = new Servo(2);
   }
 
@@ -35,7 +37,7 @@ public class ClimberSub extends SubsystemBase {
     pulseWidth = Math.min(Math.max(pulseWidth, 1.0), 2.0);
 
     leftActuator.setSpeed((pulseWidth - 1));
-    rightActuator.setSpeed(pulseWidth - 1);
+    rightActuator.setSpeed((pulseWidth - 1));
   }
 
   private double map(double value, double fromLow, double fromHigh, double toLow, double toHigh) {
