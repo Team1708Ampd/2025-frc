@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class CoralSub extends SubsystemBase {
@@ -14,11 +15,13 @@ public class CoralSub extends SubsystemBase {
   TalonFX leftElevator = new TalonFX(9);
   TalonFX rightElevator = new TalonFX(8);
   TalonFX intake = new TalonFX(10);
-  TalonFX claw = new TalonFX(12);
+  TalonFX wrist = new TalonFX(12);
+  public Encoder wristEncoder = new Encoder(0, 1);
+  public Encoder elevatorEncoder = new Encoder(2, 3);
 
 
   public CoralSub() {
-    claw.setNeutralMode(NeutralModeValue.Brake);
+    wrist.setNeutralMode(NeutralModeValue.Brake);
   }
 
   public void setElevator(double power) {
@@ -30,8 +33,8 @@ public class CoralSub extends SubsystemBase {
     intake.set(power);
   }
 
-  public void setClaw(double power) {
-    claw.set(power);
+  public void setWrist(double power) {
+    wrist.set(power);
   }
 
   @Override

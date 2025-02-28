@@ -16,16 +16,16 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
+import frc.robot.commands.ClimbBrakeOff;
+import frc.robot.commands.ClimbBrakeOn;
 import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
 import frc.robot.commands.CoralIntake;
 import frc.robot.commands.CoralOuttake;
 import frc.robot.commands.ElevatorDownManual;
 import frc.robot.commands.ElevatorUpManual;
-import frc.robot.commands.GroundIntake;
-import frc.robot.commands.GroundIntakeDown;
-import frc.robot.commands.GroundIntakeUp;
-import frc.robot.commands.GroundOuttake;
+import frc.robot.commands.LowerActuators;
+import frc.robot.commands.RaiseActuators;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
@@ -64,16 +64,16 @@ public class RobotContainer {
 
         joystick.start().whileTrue(new ClimberForward());
         joystick.back().whileTrue(new ClimberBack()); 
-        joystick.a().whileTrue(new GroundIntake());
-        joystick.b().whileTrue(new GroundOuttake());
-        joystick.x().whileTrue(new GroundIntakeUp());
-        joystick.y().whileTrue(new GroundIntakeDown());
         joystick.leftBumper().whileTrue(new ElevatorUpManual());
         joystick.rightBumper().whileTrue(new ElevatorDownManual());
         joystick.leftTrigger().whileTrue(new CoralIntake());
         joystick.rightTrigger().whileTrue(new CoralOuttake());
         joystick.leftStick().whileTrue(new ClawBack());
         joystick.rightStick().whileTrue(new ClawForward());
+        joystick.x().onTrue(new ClimbBrakeOn());
+        joystick.y().onTrue(new ClimbBrakeOff());
+        joystick.a().whileTrue(new LowerActuators());
+        joystick.b().whileTrue(new RaiseActuators());
     }
 
     public Command getAutonomousCommand() {

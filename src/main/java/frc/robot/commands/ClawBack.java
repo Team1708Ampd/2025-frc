@@ -22,14 +22,14 @@ public class ClawBack extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralSub.setClaw(-0.2);
+    Robot.coralSub.setWrist(-0.2);
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.coralSub.setClaw(0);
+    Robot.coralSub.setWrist(0);
 
   }
 

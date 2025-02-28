@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.AlgaeSub;
 import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.CoralSub;
 
@@ -17,12 +16,10 @@ public class Robot extends TimedRobot {
   private final RobotContainer m_robotContainer;
 
   public static ClimberSub climberSub;
-  public static AlgaeSub algaeSub;
   public static CoralSub coralSub;
 
   public Robot() {
     climberSub = new ClimberSub();
-    algaeSub = new AlgaeSub();
     coralSub = new CoralSub();
     m_robotContainer = new RobotContainer();
   }
@@ -64,7 +61,10 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    System.out.println("wrist encoder: " + coralSub.wristEncoder.get());
+    System.out.println("Elevator encoder: " + coralSub.elevatorEncoder.get());
+  }
 
   @Override
   public void teleopExit() {}
