@@ -7,7 +7,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class CoralSub extends SubsystemBase {
@@ -16,12 +18,15 @@ public class CoralSub extends SubsystemBase {
   TalonFX rightElevator = new TalonFX(8);
   TalonFX intake = new TalonFX(10);
   TalonFX wrist = new TalonFX(12);
-  public Encoder wristEncoder = new Encoder(0, 1);
-  public Encoder elevatorEncoder = new Encoder(2, 3);
+  public Encoder wristEncoder = new Encoder(0, 1, true, EncodingType.k2X);
+  public Encoder elevatorEncoder = new Encoder(7, 8, true, EncodingType.k2X);
+  public DigitalInput beam = new DigitalInput(6);
 
 
   public CoralSub() {
     wrist.setNeutralMode(NeutralModeValue.Brake);
+    leftElevator.setNeutralMode(NeutralModeValue.Brake);
+    rightElevator.setNeutralMode(NeutralModeValue.Brake); 
   }
 
   public void setElevator(double power) {

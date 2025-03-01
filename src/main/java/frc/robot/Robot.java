@@ -22,6 +22,8 @@ public class Robot extends TimedRobot {
     climberSub = new ClimberSub();
     coralSub = new CoralSub();
     m_robotContainer = new RobotContainer();
+    coralSub.wristEncoder.reset();
+    coralSub.elevatorEncoder.reset();
   }
 
   @Override
@@ -62,10 +64,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // System.out.println("wrist encoder: " + coralSub.wristEncoder.get());
-    // System.out.println("Elevator encoder: " + coralSub.elevatorEncoder.get());
-    System.out.println("Left Actuator " + climberSub.leftActuator.getPosition());
-    System.out.println("Right Actuator " + climberSub.rightActuator.getPosition());
+    System.out.println(!coralSub.beam.get());
   }
 
   @Override
