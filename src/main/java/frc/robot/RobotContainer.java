@@ -56,24 +56,24 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
+                drive.withVelocityX(joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY(joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
                     .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
             )
         );
 
-        joystick.start().whileTrue(new ClimberForward());
-        joystick.back().whileTrue(new ClimberBack()); 
+        // joystick.start().whileTrue(new ClimberForward());
+        // joystick.back().whileTrue(new ClimberBack()); 
         joystick.leftBumper().whileTrue(new ElevatorUpManual());
         joystick.rightBumper().whileTrue(new ElevatorDownManual());
         joystick.leftTrigger().whileTrue(new CoralIntake());
         joystick.rightTrigger().whileTrue(new CoralOuttake());
-        joystick.leftStick().whileTrue(new ClawBack());
-        joystick.rightStick().whileTrue(new ClawForward());
-        joystick.x().onTrue(new ClimbBrakeOn());
-        joystick.y().onTrue(new ClimbBrakeOff());
-        joystick.a().whileTrue(new LowerActuators());
-        joystick.b().whileTrue(new RaiseActuators());
+        joystick.a().whileTrue(new ClawBack());
+        joystick.b().whileTrue(new ClawForward());
+        // joystick.x().onTrue(new ClimbBrakeOn());
+        // joystick.y().onTrue(new ClimbBrakeOff());
+        joystick.x().whileTrue(new LowerActuators());
+        joystick.y().whileTrue(new RaiseActuators());
     }
 
     public Command getAutonomousCommand() {

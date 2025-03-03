@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class CoralSub extends SubsystemBase {
   /** Creates a new CoralSub. */
-  TalonFX leftElevator = new TalonFX(9);
-  TalonFX rightElevator = new TalonFX(8);
+  public TalonFX leftElevator = new TalonFX(9);
+  public TalonFX rightElevator = new TalonFX(8);
   TalonFX intake = new TalonFX(10);
   TalonFX wrist = new TalonFX(12);
-  public Encoder wristEncoder = new Encoder(0, 1, true, EncodingType.k2X);
-  public Encoder elevatorEncoder = new Encoder(7, 8, true, EncodingType.k2X);
+  public Encoder wristEncoder = new Encoder(0, 1, true, EncodingType.k4X);
+  public Encoder elevatorEncoder = new Encoder(7, 8, true, EncodingType.k4X);
   public DigitalInput beam = new DigitalInput(6);
 
 
