@@ -24,6 +24,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     coralSub.leftElevator.setPosition(0);
     coralSub.rightElevator.setPosition(0);
+    coralSub.wrist.setPosition(0);
   }
 
   @Override
@@ -64,8 +65,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    System.out.println("left elevator " + coralSub.leftElevator.getPosition());
-    System.out.println("right elevator " + coralSub.rightElevator.getPosition());
+    System.out.println("wrist " + coralSub.wrist.getRotorPosition().getValueAsDouble());
   }
 
   @Override
