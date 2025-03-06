@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,13 +22,20 @@ public class CoralSub extends SubsystemBase {
   public TalonFX wrist = new TalonFX(12);
   public Encoder wristEncoder = new Encoder(0, 1, true, EncodingType.k4X);
   public Encoder elevatorEncoder = new Encoder(7, 8, true, EncodingType.k4X);
-  public DigitalInput beam = new DigitalInput(6);
+  public DigitalInput beam = new DigitalInput(2);
+  SparkMax leftIntake = new SparkMax(15, MotorType.kBrushless);
+  SparkMax rightIntake = new SparkMax(23, MotorType.kBrushless);
 
 
   public CoralSub() {
     wrist.setNeutralMode(NeutralModeValue.Brake);
     leftElevator.setNeutralMode(NeutralModeValue.Brake);
-    rightElevator.setNeutralMode(NeutralModeValue.Brake); 
+    rightElevator.setNeutralMode(NeutralModeValue.Brake);
+    intake.setNeutralMode(NeutralModeValue.Brake);
+  }
+
+  public boolean getBeam() {
+    return beam.get();
   }
 
   public void setElevator(double power) {
@@ -36,6 +45,8 @@ public class CoralSub extends SubsystemBase {
 
   public void setIntake(double power) {
     intake.set(power);
+    leftIntake.set(-power);
+    rightIntake.set(power);
   }
 
   public void setWrist(double power) {

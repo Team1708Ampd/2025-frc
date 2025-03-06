@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -21,11 +22,22 @@ import frc.robot.commands.ClimbBrakeOn;
 import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
 import frc.robot.commands.CoralIntake;
+import frc.robot.commands.CoralIntakeScore;
 import frc.robot.commands.CoralOuttake;
 import frc.robot.commands.ElevatorDownManual;
 import frc.robot.commands.ElevatorUpManual;
+import frc.robot.commands.GoToBottomCoral;
+import frc.robot.commands.GoToElevatorBottom;
+import frc.robot.commands.GoToIntakePosition;
+import frc.robot.commands.GoToMiddleCoral;
+import frc.robot.commands.GoToTopCoral;
 import frc.robot.commands.LowerActuators;
 import frc.robot.commands.RaiseActuators;
+import frc.robot.commands.ScoreBottomCoral;
+import frc.robot.commands.ScoreMiddleCoral;
+import frc.robot.commands.ScoreTopCoral;
+import frc.robot.commands.SetWristToIntake;
+import frc.robot.commands.SetWristToScore;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
@@ -34,7 +46,7 @@ public class RobotContainer {
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
-    private final SwerveRequest.RobotCentric drive = new SwerveRequest.RobotCentric()
+    private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
@@ -62,19 +74,24 @@ public class RobotContainer {
             )
         );
 
-        // joystick.start().whileTrue(new ClimberForward());
-        // joystick.back().whileTrue(new ClimberBack()); 
+        joystick.povDown().onTrue(new GoToIntakePosition());
+        joystick.povLeft().onTrue(new ScoreBottomCoral());
+        joystick.povRight().onTrue(new ScoreMiddleCoral());
+        joystick.povUp().onTrue(new ScoreTopCoral());
+
+        joystick.a().whileTrue(new CoralIntake());
+        joystick.b().whileTrue(new CoralOuttake());
+        joystick.x().whileTrue(new CoralIntakeScore());
+
         joystick.leftBumper().whileTrue(new ElevatorUpManual());
         joystick.rightBumper().whileTrue(new ElevatorDownManual());
-        joystick.leftTrigger().whileTrue(new CoralIntake());
-        joystick.rightTrigger().whileTrue(new CoralOuttake());
-        joystick.a().whileTrue(new ClawBack());
-        joystick.b().whileTrue(new ClawForward());
-        // joystick.x().onTrue(new ClimbBrakeOn());
-        // joystick.y().onTrue(new ClimbBrakeOff());
-        joystick.x().whileTrue(new LowerActuators());
-        joystick.y().whileTrue(new RaiseActuators());
-    }
+
+        joystick.leftTrigger().whileTrue(new ClawForward());
+        joystick.rightTrigger().whileTrue(new ClawBack());
+
+        joystick.start().whileTrue(new ClimberForward());
+        joystick.back().whileTrue(new ClimberBack());
+    } 
 
     public Command getAutonomousCommand() {
         return Commands.print("No autonomous command configured");

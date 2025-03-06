@@ -22,13 +22,13 @@ public class ElevatorDownManual extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralSub.setElevator(-0.3);
+    Robot.coralSub.setElevator(-0.15);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.coralSub.setElevator(0);
+    Robot.coralSub.setElevator(0.03);
   }
 
   // Returns true when the command should end.

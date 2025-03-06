@@ -22,7 +22,7 @@ public class CoralOuttake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralSub.setIntake(-1);
+    Robot.coralSub.setIntake(0.35);
   }
 
   // Called once the command ends or is interrupted.

@@ -28,7 +28,7 @@ public class ElevatorUpManual extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.coralSub.setElevator(0);
+    Robot.coralSub.setElevator(0.03);
   }
 
   // Returns true when the command should end.

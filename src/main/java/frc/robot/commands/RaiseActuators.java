@@ -22,7 +22,7 @@ public class RaiseActuators extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climberSub.moveActuators(5);
+    Robot.climberSub.moveActuators(1);
   }
 
   // Called once the command ends or is interrupted.

@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Robot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class LowerActuators extends Command {
-  /** Creates a new LowerActuators. */
-  public LowerActuators() {
+public class GoToElevatorBottom extends Command {
+  /** Creates a new GoToElevatorBottom. */
+  public GoToElevatorBottom() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.climberSub);
+    addRequirements(Robot.coralSub);
   }
 
   // Called when the command is initially scheduled.
@@ -22,17 +22,22 @@ public class LowerActuators extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climberSub.moveActuators(-1);
+    Robot.coralSub.setElevator(-0.1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.coralSub.setElevator(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (Math.abs(0 - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble()) < 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
