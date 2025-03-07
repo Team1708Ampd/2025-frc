@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
@@ -81,7 +82,9 @@ public class RobotContainer {
 
         joystick.a().whileTrue(new CoralIntake());
         joystick.b().whileTrue(new CoralOuttake());
-        joystick.x().whileTrue(new CoralIntakeScore());
+        joystick.x().whileTrue(new LowerActuators());
+        joystick.y().whileTrue(new RaiseActuators());
+
 
         joystick.leftBumper().whileTrue(new ElevatorUpManual());
         joystick.rightBumper().whileTrue(new ElevatorDownManual());
