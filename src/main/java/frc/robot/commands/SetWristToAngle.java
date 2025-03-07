@@ -7,13 +7,17 @@ import frc.robot.Robot;
 
 public class SetWristToAngle extends Command{
     double targetAngle;
-    private final double HS_MOVEMENT_THRESHOLD = 15; // Threshold to move at high speed
-    private final double LS_MOVEMENT_THRESHOLD = 5; // Threshold to move at low speed
+    private final double HS_MOVEMENT_THRESHOLD = 5; // Threshold to move at high speed
+    private final double LS_MOVEMENT_THRESHOLD = 3; // Threshold to move at low speed
     private final double FINAL_POSITION_THRESHOLD = 0.5; // threshold for terminating command
 
     private final double HIGH_SPEED_NORMALIZED = 0.3;
     private final double LOW_SPEED_NORMALIZED = 0.15;
     private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.1;
+
+    public static final double SCORE_ANGLE = 4.77;
+    public static final double TOP_SCORE_ANGLE = 4.77;
+    public static final double INTAKE_ANGLE = 0;
 
     /** Creates a new SetWristToScore. */
     public SetWristToAngle(double angle) {
@@ -71,9 +75,6 @@ public class SetWristToAngle extends Command{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (Math.abs(targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble()) >= FINAL_POSITION_THRESHOLD) {
-        return true;
-        }
-        return false;
+        return (Math.abs(targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble()) <= FINAL_POSITION_THRESHOLD); 
     }
 }

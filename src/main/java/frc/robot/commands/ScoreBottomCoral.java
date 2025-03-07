@@ -14,6 +14,6 @@ public class ScoreBottomCoral extends SequentialCommandGroup {
   public ScoreBottomCoral() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new SetWristToScore(), new GoToBottomCoral());
+    addCommands(new SetWristToAngle(SetWristToAngle.SCORE_ANGLE), new GoToBottomCoral());
   }
 }
