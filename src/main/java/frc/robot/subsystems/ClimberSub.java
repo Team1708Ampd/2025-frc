@@ -25,7 +25,7 @@ public class ClimberSub extends SubsystemBase {
     // leftActuator = new PWM(3);
     // leftActuator.setZeroLatch();
     // rightActuator = new PWM(1);
-    // rightActuator.setZeroLatch();
+    //rightActuator.setZeroLatch();
     leftActuator = new Servo(3);
     leftActuator.setBoundsMicroseconds(2000, 1800, 1500, 1200, 1000);
     rightActuator = new Servo(1);
@@ -58,6 +58,7 @@ public class ClimberSub extends SubsystemBase {
   {
     rightActuator.setSpeed(1);
     Timer.delay(2);    
+    rightActuator.setDisabled();
     leftActuator.setSpeed(1);
   }
 
@@ -65,6 +66,7 @@ public class ClimberSub extends SubsystemBase {
   {
     leftActuator.setSpeed(-1);
     Timer.delay(2);
+    leftActuator.setDisabled();
     rightActuator.setSpeed(-1);
   }
 
