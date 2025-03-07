@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ClimberSub extends SubsystemBase {
 
   SparkMax climber;
-  public PWM leftActuator;
-  public PWM rightActuator;
+  public Servo leftActuator;
+  public Servo rightActuator;
   Servo climbBrake;
 
   /** Creates a new ClimberSub. */
