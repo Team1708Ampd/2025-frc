@@ -24,6 +24,7 @@ import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
 import frc.robot.commands.CoralIntake;
 import frc.robot.commands.CoralIntakeScore;
+import frc.robot.commands.CoralIntakeTwoState;
 import frc.robot.commands.CoralOuttake;
 import frc.robot.commands.ElevatorDownManual;
 import frc.robot.commands.ElevatorUpManual;
@@ -80,10 +81,10 @@ public class RobotContainer {
         joystick.povRight().onTrue(new ScoreMiddleCoral());
         joystick.povUp().onTrue(new ScoreTopCoral());
 
-        joystick.a().whileTrue(new CoralIntake());
+        joystick.a().onTrue(new CoralIntakeTwoState());
         joystick.b().whileTrue(new CoralOuttake());
-        joystick.x().whileTrue(new LowerActuators());
-        joystick.y().whileTrue(new RaiseActuators());
+        joystick.x().onTrue(new LowerActuators());
+        joystick.y().onTrue(new RaiseActuators());
 
 
         joystick.leftBumper().whileTrue(new ElevatorUpManual());
