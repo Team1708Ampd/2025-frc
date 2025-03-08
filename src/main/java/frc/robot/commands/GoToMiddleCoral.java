@@ -9,6 +9,15 @@ import frc.robot.Robot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class GoToMiddleCoral extends Command {
+  double targetAngle = 18.612;
+  private final double HS_MOVEMENT_THRESHOLD = 5;
+  private final double LS_MOVEMENT_THRESHOLD = 1.25;
+  private final double FINAL_POSITION_THRESHOLD = 0.6;
+
+  private final double HIGH_SPEED = 0.35;
+  private final double LOW_SPEED = 0.2;
+  private final double FINAL_SPEED = 0.13;
+  private final double DOWN_SPEED = -0.08;
   /** Creates a new GoToBottomCoral. */
   public GoToMiddleCoral() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,13 +31,17 @@ public class GoToMiddleCoral extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 8) {
-      Robot.coralSub.setElevator(0.18);
-    }
-    else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 10) {
-      Robot.coralSub.setElevator(0.10);
-    } else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() > 19) {
-      Robot.coralSub.setElevator(-0.07);
+    if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() > targetAngle) {
+      Robot.coralSub.setElevator(DOWN_SPEED);
+    } else {
+      double difference = targetAngle - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble();
+      if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD) {
+        Robot.coralSub.setElevator(HIGH_SPEED);
+      } else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD) {
+        Robot.coralSub.setElevator(LOW_SPEED);
+      } else {
+        Robot.coralSub.setElevator(FINAL_SPEED);
+      }
     }
   }
 
@@ -41,7 +54,7 @@ public class GoToMiddleCoral extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(18.612 - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble()) <= 0.6) {
+    if (Math.abs(targetAngle - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble()) <= FINAL_POSITION_THRESHOLD) {
       return true;
     }
     return false;

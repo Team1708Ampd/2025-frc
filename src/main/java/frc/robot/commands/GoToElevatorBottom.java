@@ -22,22 +22,19 @@ public class GoToElevatorBottom extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralSub.setElevator(-0.1);
+    Robot.coralSub.setElevator(-0.15);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.coralSub.setElevator(0);
+    Robot.coralSub.leftElevator.setPosition(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(0 - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble()) < 1) {
-      return true;
-    } else {
-      return false;
-    }
+    return !Robot.coralSub.elevatorSwitch.get();
   }
 }

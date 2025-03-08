@@ -29,15 +29,12 @@ public class SetWristToIntake extends Command {
   @Override
   public void end(boolean interrupted) {
     Robot.coralSub.setWrist(0);
+    Robot.coralSub.wrist.setPosition(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(0 - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble()) < 1) {
-      return true;
-    } else {
-      return false;
-    }
+    return !Robot.coralSub.wristSwitch.get();
   }
 }

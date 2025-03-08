@@ -18,7 +18,9 @@ public class ClimberForward extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.climberSub.moveBrake(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -30,6 +32,7 @@ public class ClimberForward extends Command {
   @Override
   public void end(boolean interrupted) {
     Robot.climberSub.setPower(0);
+    Robot.climberSub.moveBrake(0.3);
   }
 
   // Returns true when the command should end.

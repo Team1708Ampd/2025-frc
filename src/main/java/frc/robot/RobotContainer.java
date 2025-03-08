@@ -14,32 +14,20 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
-import frc.robot.commands.ClimbBrakeOff;
-import frc.robot.commands.ClimbBrakeOn;
 import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
-import frc.robot.commands.CoralIntake;
-import frc.robot.commands.CoralIntakeScore;
 import frc.robot.commands.CoralIntakeTwoState;
 import frc.robot.commands.CoralOuttake;
 import frc.robot.commands.ElevatorDownManual;
 import frc.robot.commands.ElevatorUpManual;
-import frc.robot.commands.GoToBottomCoral;
-import frc.robot.commands.GoToElevatorBottom;
 import frc.robot.commands.GoToIntakePosition;
-import frc.robot.commands.GoToMiddleCoral;
-import frc.robot.commands.GoToTopCoral;
 import frc.robot.commands.LowerActuators;
 import frc.robot.commands.RaiseActuators;
 import frc.robot.commands.ScoreBottomCoral;
 import frc.robot.commands.ScoreMiddleCoral;
 import frc.robot.commands.ScoreTopCoral;
-import frc.robot.commands.SetWristToIntake;
-import frc.robot.commands.SetWristToScore;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
@@ -70,9 +58,9 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX(joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+                drive.withVelocityX((-joystick.getLeftY() * MaxSpeed) / 2) // Drive forward with negative Y (forward)
+                    .withVelocityY((-joystick.getLeftX() * MaxSpeed) / 2) // Drive left with negative X (left)
+                    .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
             )
         );
 
@@ -83,8 +71,8 @@ public class RobotContainer {
 
         joystick.a().onTrue(new CoralIntakeTwoState());
         joystick.b().whileTrue(new CoralOuttake());
-        joystick.x().onTrue(new LowerActuators());
-        joystick.y().onTrue(new RaiseActuators());
+        joystick.x().whileTrue(new LowerActuators());
+        joystick.y().whileTrue(new RaiseActuators());
 
 
         joystick.leftBumper().whileTrue(new ElevatorUpManual());

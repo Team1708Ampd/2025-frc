@@ -23,9 +23,9 @@ public class SetWristToScore extends Command {
   @Override
   public void execute() {
     if (Robot.coralSub.wrist.getRotorPosition().getValueAsDouble() < 4) {
-      Robot.coralSub.setWrist(0.1);
+      Robot.coralSub.setWrist(0.09);
     } else if (Robot.coralSub.wrist.getRotorPosition().getValueAsDouble() > 5.5) {
-      Robot.coralSub.setWrist(-0.1);
+      Robot.coralSub.setWrist(-0.09);
     }
   }
 

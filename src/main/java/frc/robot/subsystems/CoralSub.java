@@ -20,12 +20,12 @@ public class CoralSub extends SubsystemBase {
   public TalonFX rightElevator = new TalonFX(8);
   TalonFX intake = new TalonFX(10);
   public TalonFX wrist = new TalonFX(12);
-  public Encoder wristEncoder = new Encoder(0, 1, true, EncodingType.k4X);
-  public Encoder elevatorEncoder = new Encoder(7, 8, true, EncodingType.k4X);
   public DigitalInput beam = new DigitalInput(2);
   SparkMax leftIntake = new SparkMax(15, MotorType.kBrushless);
   SparkMax rightIntake = new SparkMax(23, MotorType.kBrushless);
 
+  public DigitalInput wristSwitch = new DigitalInput(4);
+  public DigitalInput elevatorSwitch = new DigitalInput(7);
 
   public CoralSub() {
     wrist.setNeutralMode(NeutralModeValue.Brake);
