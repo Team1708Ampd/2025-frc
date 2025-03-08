@@ -9,6 +9,7 @@ public class SetWristToAngle extends Command{
     double targetAngle;
     private final double HS_MOVEMENT_THRESHOLD = 3; // Threshold to move at high speed
     private final double LS_MOVEMENT_THRESHOLD = 1.25; // Threshold to move at low speed
+
     private final double FINAL_POSITION_THRESHOLD = 0.5; // threshold for terminating command
 
     private final double HIGH_SPEED_NORMALIZED = 0.2;
