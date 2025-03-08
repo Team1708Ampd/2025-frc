@@ -23,10 +23,10 @@ public class GoToTopCoral extends Command {
   @Override
   public void execute() {
     if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 20) {
-      Robot.coralSub.setElevator(0.22);
+      Robot.coralSub.setElevator(0.25);
     }
     else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 27) {
-      Robot.coralSub.setElevator(0.12);
+      Robot.coralSub.setElevator(0.15);
     } else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() > 37) {
       Robot.coralSub.setElevator(-0.06);
     }

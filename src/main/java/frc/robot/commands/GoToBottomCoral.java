@@ -23,7 +23,7 @@ public class GoToBottomCoral extends Command {
   @Override
   public void execute() {
     if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 6) {
-      Robot.coralSub.setElevator(0.12);
+      Robot.coralSub.setElevator(0.25);
     } else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() > 9) {
       Robot.coralSub.setElevator(-0.04);
     }
