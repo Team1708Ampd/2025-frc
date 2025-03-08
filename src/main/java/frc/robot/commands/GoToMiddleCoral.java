@@ -23,7 +23,7 @@ public class GoToMiddleCoral extends Command {
   @Override
   public void execute() {
     if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 8) {
-      Robot.coralSub.setElevator(0.18);
+      Robot.coralSub.setElevator(0.25);
     }
     else if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() < 10) {
       Robot.coralSub.setElevator(0.10);
