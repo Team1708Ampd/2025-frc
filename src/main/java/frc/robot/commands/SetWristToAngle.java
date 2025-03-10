@@ -12,9 +12,9 @@ public class SetWristToAngle extends Command{
 
     private final double FINAL_POSITION_THRESHOLD = 0.5; // threshold for terminating command
 
-    private final double HIGH_SPEED_NORMALIZED = 0.2;
-    private final double LOW_SPEED_NORMALIZED = 0.15;
-    private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.07;
+    private final double HIGH_SPEED_NORMALIZED = 0.15;
+    private final double LOW_SPEED_NORMALIZED = 0.12;
+    private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.09;
 
     public static final double SCORE_ANGLE = 4.77;
     public static final double TOP_SCORE_ANGLE = 8.7;
@@ -46,22 +46,22 @@ public class SetWristToAngle extends Command{
 
         if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
         {
-            speedSetpoint = HIGH_SPEED_NORMALIZED;        
+            speedSetpoint = -HIGH_SPEED_NORMALIZED;        
         }
         else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD)
         {
-            speedSetpoint = LOW_SPEED_NORMALIZED;
+            speedSetpoint = -LOW_SPEED_NORMALIZED;
         }
         else
         {
             // Move very slowly 
-            speedSetpoint = STUPIDLY_SLOW_SPEED_NORMALIZED;
+            speedSetpoint = -STUPIDLY_SLOW_SPEED_NORMALIZED;
         }
 
         // Set the sign based on direction that the wrist needs to move
         if (difference > 0)
         {
-            speedSetpoint = -(speedSetpoint);
+            speedSetpoint = Math.abs(speedSetpoint);
         }
 
         Robot.coralSub.setWrist(speedSetpoint);
