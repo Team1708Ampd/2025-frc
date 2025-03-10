@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
     coralSub.leftElevator.setPosition(0);
     coralSub.rightElevator.setPosition(0);
     coralSub.wrist.setPosition(0);
-    candle = new CANdleSystem(coralSub);
+    //candle = new CANdleSystem(coralSub);
   }
 
   @Override
