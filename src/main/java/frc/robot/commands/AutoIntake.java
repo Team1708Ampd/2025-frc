@@ -6,36 +6,38 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.ClimberSub;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ClimberForward extends Command {
-  /** Creates a new ClimberForward. */
-  public ClimberForward() {
+public class AutoIntake extends Command {
+
+  long time;
+  /** Creates a new AutoIntake. */
+  public AutoIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.climberSub);
+    addRequirements(Robot.coralSub);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    time = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climberSub.setPower(0.5);
+    Robot.coralSub.setIntake(-0.35);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.climberSub.setPower(0);
+    Robot.coralSub.setIntake(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+  return (System.currentTimeMillis() - time) > 1000;
   }
 }
