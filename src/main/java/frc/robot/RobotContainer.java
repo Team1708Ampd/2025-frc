@@ -16,6 +16,7 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ClawBack;
@@ -68,6 +69,14 @@ public class RobotContainer {
 
     public RobotContainer() {
         configureBindings();
+
+        initAuto();
+
+        // Register the commands for the autos
+        registerNamedCommands();
+
+        // Schedule the selected auto
+        CommandScheduler.getInstance().schedule(getAutonomousCommand());
     }
 
     private void configureBindings() {
