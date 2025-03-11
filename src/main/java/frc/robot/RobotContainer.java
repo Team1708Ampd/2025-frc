@@ -7,10 +7,13 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import java.util.Map;
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -18,6 +21,7 @@ import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
 import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
+import frc.robot.commands.CoralIntake;
 import frc.robot.commands.CoralIntakeTwoState;
 import frc.robot.commands.CoralOuttake;
 import frc.robot.commands.ElevatorDownManual;
@@ -30,6 +34,8 @@ import frc.robot.commands.ScoreMiddleCoral;
 import frc.robot.commands.ScoreTopCoral;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -47,6 +53,9 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+
+    // AUTO RELATED VARIABLES AND DEFS
+    private SendableChooser<Command> autoChooser;
 
     public RobotContainer() {
         configureBindings();
@@ -85,7 +94,39 @@ public class RobotContainer {
         joystick.back().whileTrue(new ClimberBack());
     } 
 
-    public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+    public void initAuto()
+    {
+        // Initialize PathPlanner config 
+        drivetrain.initPathPlannerConfig();
+
+        // Build the auto chooser so that auto routine can be selected 
+        // from the dashboard 
+        autoChooser = AutoBuilder.buildAutoChooser();
+
+        // Register named commands to be referenced in auto 
+        registerNamedCommands();
+    }
+
+    public Command getAutonomousCommand()
+    {
+        return autoChooser.getSelected();
+    }
+
+    private void registerNamedCommands()
+    {
+        // Gotta Register Em All 
+        NamedCommands.registerCommand("ScoreTopCoral",    new ScoreTopCoral());
+        NamedCommands.registerCommand("ScoreMiddleCoral", new ScoreMiddleCoral());
+        NamedCommands.registerCommand("ScoreBottomCoral", new ScoreBottomCoral());
+        NamedCommands.registerCommand("CoralIntake",      new CoralIntake());
+        NamedCommands.registerCommand("CoralOuttake",     new CoralOuttake());
+        NamedCommands.registerCommand("GoToIntakePos",    new GoToIntakePosition());
+        NamedCommands.registerCommand("LowerActuators",   new LowerActuators());
+        NamedCommands.registerCommand("RaiseActuators",   new RaiseActuators());
+        NamedCommands.registerCommand("ClawForward",      new ClawForward());
+        NamedCommands.registerCommand("ClawBack",         new ClawBack());
+        NamedCommands.registerCommand("CimberForward",    new ClimberForward());
+        NamedCommands.registerCommand("ClimberBack",      new ClimberBack());      
+
     }
 }
