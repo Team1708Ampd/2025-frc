@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
+import frc.robot.commands.ClimbBrakeOff;
+import frc.robot.commands.ClimbBrakeOn;
 import frc.robot.commands.ClimberBack;
 import frc.robot.commands.ClimberForward;
 import frc.robot.commands.CoralIntake;

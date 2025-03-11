@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "1st path"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "2nd path"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
