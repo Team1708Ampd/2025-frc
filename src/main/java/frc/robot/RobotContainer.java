@@ -12,6 +12,7 @@ import java.util.Map;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -56,6 +57,12 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
+    // Slew rate limiters for drive control inputs
+    // Limiter in the X DIRECTION (NOT X JOYSTICK)
+    SlewRateLimiter limiterX = new SlewRateLimiter(0.5, 1.5, 0);
+    // Limiter in the Y DIRECTION (NOT Y JOYSTICK)
+    SlewRateLimiter limiterY = new SlewRateLimiter(0.5, 1.5, 0);
+
     // AUTO RELATED VARIABLES AND DEFS
     private SendableChooser<Command> autoChooser;
 
@@ -69,9 +76,9 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX((-joystick.getLeftY() * MaxSpeed) / 2) // Drive forward with negative Y (forward)
-                    .withVelocityY((-joystick.getLeftX() * MaxSpeed) / 2) // Drive left with negative X (left)
-                    .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
+                drive.withVelocityX((limiterX.calculate(-joystick.getLeftY()) * MaxSpeed)) // Drive forward with negative Y (forward)
+                     .withVelocityY((limiterY.calculate(-joystick.getLeftX()) * MaxSpeed)) // Drive left with negative X (left)
+                     .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
             )
         );
 
