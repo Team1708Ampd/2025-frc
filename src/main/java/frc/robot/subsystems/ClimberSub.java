@@ -22,15 +22,13 @@ public class ClimberSub extends SubsystemBase {
   /** Creates a new ClimberSub. */
   public ClimberSub() {
     climber = new SparkMax(14, MotorType.kBrushless);
-    // leftActuator = new PWM(3);
-    // leftActuator.setZeroLatch();
-    // rightActuator = new PWM(1);
-    //rightActuator.setZeroLatch();
     leftActuator = new Servo(3);
     leftActuator.setBoundsMicroseconds(2000, 1800, 1500, 1200, 1000);
     rightActuator = new Servo(1);
     rightActuator.setBoundsMicroseconds(2000, 1800, 1500, 1200, 1000);
     climbBrake = new Servo(2);
+    climbBrake.setBoundsMicroseconds(2500, 450, 400, 100, 500);
+    climbBrake.enableDeadbandElimination(true);
   }
 
   public void setPower(double power) {
@@ -69,6 +67,7 @@ public class ClimberSub extends SubsystemBase {
     leftActuator.setDisabled();
     rightActuator.setSpeed(-1);
   }
+
 
   @Override
   public void periodic() {
