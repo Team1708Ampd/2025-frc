@@ -300,11 +300,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     
     public void initPathPlannerConfig()
     {
-        RobotConfig m_config = new RobotConfig(10.0,
-                                               12.0, 
-                                               new ModuleConfig(0.0508, 
-                                                                5.96, 
-                                                                1.0, 
+        RobotConfig m_config = new RobotConfig(51.483,
+                                               3.889, 
+                                               new ModuleConfig(0.051, 
+                                                                5.450, 
+                                                                1.20, 
                                                                 DCMotor.getKrakenX60(1), 
                                                                 30, 
                                                                 1

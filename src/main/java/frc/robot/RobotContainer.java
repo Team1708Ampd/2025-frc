@@ -15,10 +15,13 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AutoIntake;
+import frc.robot.commands.AutoIntakeFeeder;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
 import frc.robot.commands.ClimbBrakeOff;
@@ -70,26 +73,38 @@ public class RobotContainer {
     public RobotContainer() {
         configureBindings();
 
-        initAuto();
+        // initAuto();
 
         // Register the commands for the autos
         registerNamedCommands();
 
         // Schedule the selected auto
+        drivetrain.initPathPlannerConfig();
+        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         CommandScheduler.getInstance().schedule(getAutonomousCommand());
+        SmartDashboard.putData("Auto Chooser", autoChooser);
     }
-
+ 
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX((limiterX.calculate(-joystick.getLeftY()) * MaxSpeed)) // Drive forward with negative Y (forward)
-                     .withVelocityY((limiterY.calculate(-joystick.getLeftX()) * MaxSpeed)) // Drive left with negative X (left)
-                     .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
+                drive.withVelocityX((-joystick.getLeftY() * MaxSpeed) / 2) // Drive forward with negative Y (forward)
+                    .withVelocityY((-joystick.getLeftX() * MaxSpeed) / 2) // Drive left with negative X (left)
+                    .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
             )
         );
+
+        // drivetrain.setDefaultCommand(
+        //     // Drivetrain will execute this command periodically
+        //     drivetrain.applyRequest(() ->
+        //         drive.withVelocityX((limiterX.calculate(-joystick.getLeftY()) * MaxSpeed)) // Drive forward with negative Y (forward)
+        //              .withVelocityY((limiterY.calculate(-joystick.getLeftX()) * MaxSpeed)) // Drive left with negative X (left)
+        //              .withRotationalRate((-joystick.getRightX() * MaxAngularRate) /2) // Drive counterclockwise with negative X (left)
+        //     )
+        // );
 
         joystick.povDown().onTrue(new GoToIntakePosition());
         joystick.povLeft().onTrue(new ScoreBottomCoral());
@@ -120,9 +135,10 @@ public class RobotContainer {
         // Build the auto chooser so that auto routine can be selected 
         // from the dashboard 
         autoChooser = AutoBuilder.buildAutoChooser();
-
         // Register named commands to be referenced in auto 
         registerNamedCommands();
+
+        SmartDashboard.putData("Auto Chooser", autoChooser);
     }
 
     public Command getAutonomousCommand()
@@ -136,9 +152,10 @@ public class RobotContainer {
         NamedCommands.registerCommand("ScoreTopCoral",    new ScoreTopCoral());
         NamedCommands.registerCommand("ScoreMiddleCoral", new ScoreMiddleCoral());
         NamedCommands.registerCommand("ScoreBottomCoral", new ScoreBottomCoral());
-        NamedCommands.registerCommand("CoralIntake",      new CoralIntake());
+        NamedCommands.registerCommand("AutoIntake",       new AutoIntake());
+        NamedCommands.registerCommand("AutoIntakeFeeder", new AutoIntakeFeeder());
         NamedCommands.registerCommand("CoralOuttake",     new CoralOuttake());
-        NamedCommands.registerCommand("GoToIntakePos",    new GoToIntakePosition());
+        NamedCommands.registerCommand("GoToIntakePosition",new GoToIntakePosition());
         NamedCommands.registerCommand("LowerActuators",   new LowerActuators());
         NamedCommands.registerCommand("RaiseActuators",   new RaiseActuators());
         NamedCommands.registerCommand("ClawForward",      new ClawForward());
