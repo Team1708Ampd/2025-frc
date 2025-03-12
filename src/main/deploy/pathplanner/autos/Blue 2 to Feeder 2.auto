@@ -1,0 +1,157 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Blue 2 to Coral 3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Coral 3 to Feeder 2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Feeder 2 to Coral 7"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Coral 7 to Feeder 2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Feeder 2 to Coral 8"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Coral 8 to Feeder 2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
