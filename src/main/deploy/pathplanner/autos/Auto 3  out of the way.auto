@@ -11,9 +11,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
           }
         },
         {
@@ -23,9 +41,15 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 1.0
           }
         },
         {
@@ -35,9 +59,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
           "type": "wait",
           "data": {
             "waitTime": 5.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
           }
         },
         {
@@ -47,9 +89,15 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 1.0
           }
         },
         {
@@ -59,15 +107,39 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "GoToIntakePosition"
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "Coral 8 to Feeder 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
           }
         },
         {
