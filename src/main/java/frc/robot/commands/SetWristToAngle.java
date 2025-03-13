@@ -8,13 +8,13 @@ import frc.robot.Robot;
 public class SetWristToAngle extends Command{
     double targetAngle;
     private final double HS_MOVEMENT_THRESHOLD = 3.25; // Threshold to move at high speed
-    private final double LS_MOVEMENT_THRESHOLD = 1.5; // Threshold to move at low speed
+    private final double LS_MOVEMENT_THRESHOLD = 1.75; // Threshold to move at low speed
 
     private final double FINAL_POSITION_THRESHOLD = 0.5; // threshold for terminating command
 
-    private final double HIGH_SPEED_NORMALIZED = 0.15;
-    private final double LOW_SPEED_NORMALIZED = 0.12;
-    private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.09;
+    private final double HIGH_SPEED_NORMALIZED = 0.14;
+    private final double LOW_SPEED_NORMALIZED = 0.11;
+    private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.08;
 
     public static final double SCORE_ANGLE = 4.77;
     public static final double TOP_SCORE_ANGLE = 8.7;
@@ -39,8 +39,6 @@ public class SetWristToAngle extends Command{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        System.out.println(targetAngle);
-        System.out.println(Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
         // Get the position difference
         double difference = (targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
         double speedSetpoint = 0;

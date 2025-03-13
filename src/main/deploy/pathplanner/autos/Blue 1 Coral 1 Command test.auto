@@ -17,39 +17,34 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "AutoIntake"
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "GoToIntakePosition"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Coral 1 to Feeder 1"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Coral 1 to Feeder 1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "GoToIntakePosition"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
             "name": "AutoIntakeFeeder"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
           }
         }
       ]

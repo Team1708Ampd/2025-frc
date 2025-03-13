@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Robot;
 import frc.robot.generated.TunerConstants;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -297,19 +298,15 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         super.addVisionMeasurement(visionRobotPoseMeters, Utils.fpgaToCurrentTime(timestampSeconds), visionMeasurementStdDevs);
     }
 
-    
+    RobotConfig m_config;
+
     public void initPathPlannerConfig()
     {
-        RobotConfig m_config = new RobotConfig(51.483,
-                                               3.889, 
-                                               new ModuleConfig(0.051, 
-                                                                5.450, 
-                                                                1.20, 
-                                                                DCMotor.getKrakenX60(1), 
-                                                                30, 
-                                                                1
-                                               ), 
-                                               this.getModuleLocations());
+        try {
+            m_config = RobotConfig.fromGUISettings();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
 
         // Configure AutoBuilder last
