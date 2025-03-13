@@ -39,6 +39,10 @@ public class SetWristToAngle extends Command{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+        if (targetAngle == 0) {
+            Robot.coralSub.setWrist(-0.4);
+        }
         // Get the position difference
         double difference = (targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
         double speedSetpoint = 0;
