@@ -28,7 +28,7 @@ public class ClawForward extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.coralSub.setWrist(0);
+    Robot.coralSub.setWrist(-0.02);
   }
 
   // Returns true when the command should end.

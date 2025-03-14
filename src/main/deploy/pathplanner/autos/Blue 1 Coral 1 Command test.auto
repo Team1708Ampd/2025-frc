@@ -46,6 +46,49 @@
           "data": {
             "name": "AutoIntakeFeeder"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Feeder 1 to Coral 11"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Coral 11 to Feeder 1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "GoToIntakePosition"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
         }
       ]
     }

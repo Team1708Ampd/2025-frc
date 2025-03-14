@@ -42,32 +42,33 @@ public class SetWristToAngle extends Command{
 
         if (targetAngle == 0) {
             Robot.coralSub.setWrist(-0.4);
-        }
-        // Get the position difference
-        double difference = (targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
-        double speedSetpoint = 0;
+        } else {
+            // Get the position difference
+            double difference = (targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
+            double speedSetpoint = 0;
 
-        if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
-        {
-            speedSetpoint = -HIGH_SPEED_NORMALIZED;        
-        }
-        else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD)
-        {
-            speedSetpoint = -LOW_SPEED_NORMALIZED;
-        }
-        else
-        {
-            // Move very slowly 
-            speedSetpoint = -STUPIDLY_SLOW_SPEED_NORMALIZED;
-        }
+            if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
+            {
+                speedSetpoint = -HIGH_SPEED_NORMALIZED;        
+            }
+            else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD)
+            {
+                speedSetpoint = -LOW_SPEED_NORMALIZED;
+            }
+            else
+            {
+                // Move very slowly 
+                speedSetpoint = -STUPIDLY_SLOW_SPEED_NORMALIZED;
+            }
 
-        // Set the sign based on direction that the wrist needs to move
-        if (difference > 0)
-        {
-            speedSetpoint = Math.abs(speedSetpoint);
-        }
+            // Set the sign based on direction that the wrist needs to move
+            if (difference > 0)
+            {
+                speedSetpoint = Math.abs(speedSetpoint);
+            }
 
-        Robot.coralSub.setWrist(speedSetpoint);
+            Robot.coralSub.setWrist(speedSetpoint);
+        }
     }
 
     // Called once the command ends or is interrupted.
