@@ -9,7 +9,7 @@ import frc.robot.Robot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class GoToBottomCoral extends Command {
-  double targetAngle = 7.229;
+  double targetAngle = 7.829;
   private final double HS_MOVEMENT_THRESHOLD = 3;
   private final double LS_MOVEMENT_THRESHOLD = 1.25;
   private final double FINAL_POSITION_THRESHOLD = 0.6;

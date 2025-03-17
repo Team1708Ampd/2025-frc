@@ -16,8 +16,8 @@ public class SetWristToAngle extends Command{
     private final double LOW_SPEED_NORMALIZED = 0.11;
     private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.08;
 
-    public static final double SCORE_ANGLE = 4.77;
-    public static final double TOP_SCORE_ANGLE = 8.7;
+    public static final double SCORE_ANGLE = 5.7;
+    public static final double TOP_SCORE_ANGLE = 8.5;
     public static final double INTAKE_ANGLE = 0;
 
     /** Creates a new SetWristToScore. */

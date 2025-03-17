@@ -24,7 +24,7 @@ public class ClimberForward extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climberSub.setPower(0.5);
+    Robot.climberSub.setPower(1);
   }
 
   // Called once the command ends or is interrupted.
