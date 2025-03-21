@@ -38,6 +38,6 @@ public class AutoIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  return (System.currentTimeMillis() - time) > 200;
+  return (System.currentTimeMillis() - time) > 500;
   }
 }
