@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AlignToReef;
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AutoIntakeFeeder;
 import frc.robot.commands.ClawBack;
@@ -164,6 +165,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("ClawBack",         new ClawBack());
         NamedCommands.registerCommand("CimberForward",    new ClimberForward());
         NamedCommands.registerCommand("ClimberBack",      new ClimberBack());      
+        NamedCommands.registerCommand("AlignToReef_Left", new AlignToReef(false, drivetrain));
+        NamedCommands.registerCommand("AlignToReef_Right", new AlignToReef(true, drivetrain));
 
     }
 }
