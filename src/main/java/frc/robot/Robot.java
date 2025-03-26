@@ -5,14 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CANdleSystem;
 import frc.robot.subsystems.ClimberSub;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.CoralSub;
 
 public class Robot extends TimedRobot {
@@ -23,15 +19,11 @@ public class Robot extends TimedRobot {
   public static ClimberSub climberSub;
   public static CoralSub coralSub;
   public static CANdleSystem candle;
-  public static CommandSwerveDrivetrain drivetrain;
-
-  XboxController controller = new XboxController(0);
 
 
   public Robot() {
     climberSub = new ClimberSub();
     coralSub = new CoralSub();
-    drivetrain = TunerConstants.createDrivetrain();
     m_robotContainer = new RobotContainer();
     coralSub.leftElevator.setPosition(0);
     coralSub.rightElevator.setPosition(0);
