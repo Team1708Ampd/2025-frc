@@ -23,7 +23,7 @@ public class AlignToReef extends Command{
         // !!!!!!!!!!!!!!!!!11THESE PID CONSTANTS NEED TO BE TUNED!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         xController = new PIDController(2, 0.0, 0);  // Vertical movement
         yController = new PIDController(2, 0.0, 0);  // Horitontal movement
-        rotController = new PIDController(2, 0, 0);  // Rotation
+        rotController = new PIDController(.05, 0, 0);  // Rotation
         this.isRightScore = isRightScore;
         this.drivebase = drivebase;
         addRequirements(drivebase);
@@ -38,14 +38,14 @@ public class AlignToReef extends Command{
 
         // THESE CONSTANTS SHOULD BE SELECTED BY PUTTING THE ROBOT AT EXACTLY THE POSITION WE WANT IT TO BE AT 
         // IN FRONT OF THE REEF WHEN THE COMMAND ENDS 
-        rotController.setSetpoint(Constants.ROT_SETPOINT_REEF_ALIGNMENT);
-        rotController.setTolerance(Constants.ROT_TOLERANCE_REEF_ALIGNMENT);
+        rotController.setSetpoint(5);
+        rotController.setTolerance(10);
 
-        xController.setSetpoint(Constants.X_SETPOINT_REEF_ALIGNMENT);
-        xController.setTolerance(Constants.X_TOLERANCE_REEF_ALIGNMENT);
+        xController.setSetpoint(0.01);
+        xController.setTolerance(1);
 
-        yController.setSetpoint(isRightScore ? Constants.Y_SETPOINT_REEF_ALIGNMENT : -Constants.Y_SETPOINT_REEF_ALIGNMENT);
-        yController.setTolerance(Constants.Y_TOLERANCE_REEF_ALIGNMENT);
+        yController.setSetpoint(isRightScore ? 0.05 : -0.05);
+        yController.setTolerance(1);
 
         tagID = LimelightHelpers.getFiducialID("");
     }
@@ -58,9 +58,9 @@ public class AlignToReef extends Command{
         double[] postions = LimelightHelpers.getBotPose_TargetSpace("");
         SmartDashboard.putNumber("x", postions[2]);
 
-        double xSpeed = xController.calculate(postions[2]);
+        double xSpeed = -xController.calculate(postions[2]);
         SmartDashboard.putNumber("xspee", xSpeed);
-        double ySpeed = -yController.calculate(postions[0]);
+        double ySpeed = yController.calculate(postions[0]);
         double rotValue = -rotController.calculate(postions[4]);
        
 
@@ -87,7 +87,7 @@ public class AlignToReef extends Command{
     public boolean isFinished() {
         // TUNE THESE AS NEEDED
         // Requires the robot to stay in the correct position for 0.3 seconds, as long as it gets a tag in the camera
-        return this.dontSeeTagTimer.hasElapsed(Constants.DONT_SEE_TAG_WAIT_TIME) ||
-            stopTimer.hasElapsed(Constants.POSE_VALIDATION_TIME);
+        return this.dontSeeTagTimer.hasElapsed(1) ||
+            stopTimer.hasElapsed(0.3);
     }
 }
