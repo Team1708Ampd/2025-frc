@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.spark.SparkMax;
@@ -27,20 +28,24 @@ public class CoralSub extends SubsystemBase {
   public DigitalInput wristSwitch = new DigitalInput(4);
   public DigitalInput elevatorSwitch = new DigitalInput(7);
 
+  public CANcoder elevatorEncoder = new CANcoder(5);
+  public CANcoder wristEncoder = new CANcoder(6);
+
   public CoralSub() {
     wrist.setNeutralMode(NeutralModeValue.Brake);
     leftElevator.setNeutralMode(NeutralModeValue.Brake);
     rightElevator.setNeutralMode(NeutralModeValue.Brake);
     intake.setNeutralMode(NeutralModeValue.Brake);
+    elevatorEncoder.setPosition(0);
+  }
+
+ public void setElevator(double power) {
+    leftElevator.set(power);
+    rightElevator.set(power);
   }
 
   public boolean getBeam() {
-    return beam.get();
-  }
-
-  public void setElevator(double power) {
-    leftElevator.set(power);
-    rightElevator.set(power);
+    return !beam.get();
   }
 
   public void setIntake(double power) {

@@ -9,15 +9,15 @@ import frc.robot.Robot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class GoToTopCoral extends Command {
-  double targetAngle = 38.2;
-  private final double HS_MOVEMENT_THRESHOLD = 7;
-  private final double LS_MOVEMENT_THRESHOLD = 1.25;
-  private final double FINAL_POSITION_THRESHOLD = 0.6;
+  double targetAngle = 4.983;
+  private final double HS_MOVEMENT_THRESHOLD = 1;
+  private final double LS_MOVEMENT_THRESHOLD = 0.3;
+  private final double FINAL_POSITION_THRESHOLD = 0.1;
 
-  private final double HIGH_SPEED = 0.35;
-  private final double LOW_SPEED = 0.2;
-  private final double FINAL_SPEED = 0.10;
-  private final double DOWN_SPEED = -0.08;
+  private final double HIGH_SPEED = 0.6;
+  private final double LOW_SPEED = 0.4;
+  private final double FINAL_SPEED = 0.17;
+  private final double DOWN_SPEED = -0.1;
   /** Creates a new GoToBottomCoral. */
   public GoToTopCoral() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,10 +31,10 @@ public class GoToTopCoral extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble() > targetAngle) {
+    if ((-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble()) > targetAngle) {
       Robot.coralSub.setElevator(DOWN_SPEED);
     } else {
-      double difference = targetAngle - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble();
+      double difference = targetAngle - (-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble());
       if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD) {
         Robot.coralSub.setElevator(HIGH_SPEED);
       } else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD) {
@@ -54,7 +54,7 @@ public class GoToTopCoral extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(targetAngle - Robot.coralSub.leftElevator.getRotorPosition().getValueAsDouble()) <= FINAL_POSITION_THRESHOLD) {
+    if (Math.abs(targetAngle - (-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble())) <= FINAL_POSITION_THRESHOLD) {
       return true;
     }
     return false;

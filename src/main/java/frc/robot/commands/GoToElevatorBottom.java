@@ -29,12 +29,12 @@ public class GoToElevatorBottom extends Command {
   @Override
   public void end(boolean interrupted) {
     Robot.coralSub.setElevator(0);
-    Robot.coralSub.leftElevator.setPosition(0);
+    Robot.coralSub.elevatorEncoder.setPosition(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !Robot.coralSub.elevatorSwitch.get();
+    return !Robot.coralSub.elevatorSwitch.get() || (-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble() < .04);
   }
 }

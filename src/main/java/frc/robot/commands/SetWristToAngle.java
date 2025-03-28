@@ -7,17 +7,17 @@ import frc.robot.Robot;
 
 public class SetWristToAngle extends Command{
     double targetAngle;
-    private final double HS_MOVEMENT_THRESHOLD = 3.25; // Threshold to move at high speed
-    private final double LS_MOVEMENT_THRESHOLD = 1.75; // Threshold to move at low speed
+    private final double HS_MOVEMENT_THRESHOLD = 1.75; // Threshold to move at high speed
+    private final double LS_MOVEMENT_THRESHOLD = .75; // Threshold to move at low speed
 
-    private final double FINAL_POSITION_THRESHOLD = 0.5; // threshold for terminating command
+    private final double FINAL_POSITION_THRESHOLD = 0.2; // threshold for terminating command
 
-    private final double HIGH_SPEED_NORMALIZED = 0.14;
-    private final double LOW_SPEED_NORMALIZED = 0.11;
+    private final double HIGH_SPEED_NORMALIZED = 0.18;
+    private final double LOW_SPEED_NORMALIZED = 0.15;
     private final double STUPIDLY_SLOW_SPEED_NORMALIZED = 0.08;
 
-    public static final double SCORE_ANGLE = 6;
-    public static final double TOP_SCORE_ANGLE = 8.5;
+    public static final double SCORE_ANGLE = 5.810;
+    public static final double TOP_SCORE_ANGLE = 12.426;
     public static final double INTAKE_ANGLE = 0;
 
     /** Creates a new SetWristToScore. */
@@ -44,7 +44,7 @@ public class SetWristToAngle extends Command{
             Robot.coralSub.setWrist(-0.4);
         } else {
             // Get the position difference
-            double difference = (targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble());
+            double difference = (targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100));
             double speedSetpoint = 0;
 
             if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
@@ -83,7 +83,7 @@ public class SetWristToAngle extends Command{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return (Math.abs(targetAngle - Robot.coralSub.wrist.getRotorPosition().getValueAsDouble()) <= FINAL_POSITION_THRESHOLD || 
+        return (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD || 
         (targetAngle == 0 && !Robot.coralSub.wristSwitch.get())); 
     }
 }
