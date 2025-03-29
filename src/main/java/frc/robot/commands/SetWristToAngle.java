@@ -47,27 +47,27 @@ public class SetWristToAngle extends Command{
             Robot.coralSub.setWrist(-0.4);
         } else {
             // Get the position difference
-            double difference = (targetAngle - (Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100));
+            double difference = (targetAngle - (Robot.coralSub.wristEncoder.getAbsolutePosition().getValueAsDouble() * 100));
 
             speedSetpoint = 0;
             if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
             {
-                speedSetpoint = -HIGH_SPEED_NORMALIZED;        
+                speedSetpoint = HIGH_SPEED_NORMALIZED;        
             }
             else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD)
             {
-                speedSetpoint = -LOW_SPEED_NORMALIZED;
+                speedSetpoint = LOW_SPEED_NORMALIZED;
             }
             else
             {
                 // Move very slowly 
-                speedSetpoint = -STUPIDLY_SLOW_SPEED_NORMALIZED;
+                speedSetpoint = STUPIDLY_SLOW_SPEED_NORMALIZED;
             }
 
             // Set the sign based on direction that the wrist needs to move
             if (difference > 0)
             {
-                speedSetpoint = Math.abs(speedSetpoint);
+                speedSetpoint = -speedSetpoint;
             }
 
             Robot.coralSub.setWrist(speedSetpoint);
@@ -86,7 +86,7 @@ public class SetWristToAngle extends Command{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return (Math.abs(targetAngle - (Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD || 
+        return (Math.abs(targetAngle - (Robot.coralSub.wristEncoder.getAbsolutePosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD || 
         (targetAngle == 0 && !Robot.coralSub.wristSwitch.get())); 
     }
 }
