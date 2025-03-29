@@ -69,10 +69,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    System.out.println("TX: " + LimelightHelpers.getTX(""));
-    System.out.println("TY: " + LimelightHelpers.getTY(""));
-    System.out.println("TA: " + LimelightHelpers.getTA(""));
-    System.out.println("Target ID: " + LimelightHelpers.getFiducialID(""));
+    // System.out.println("TX: " + LimelightHelpers.getTX(""));
+    // System.out.println("TY: " + LimelightHelpers.getTY(""));
+    // System.out.println("TA: " + LimelightHelpers.getTA(""));
+    // System.out.println("Target ID: " + LimelightHelpers.getFiducialID(""));
   }
 
   @Override
