@@ -9,6 +9,7 @@ import com.ctre.phoenix6.configs.MagnetSensorConfigs;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
@@ -40,7 +41,9 @@ public class CoralSub extends SubsystemBase {
     intake.setNeutralMode(NeutralModeValue.Brake);
     elevatorEncoder.setPosition(0);
     CANcoderConfigurator config = wristEncoder.getConfigurator();
-    config.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1) );
+    config.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1)
+                                          .withMagnetOffset(0.662)
+                                          .withSensorDirection(SensorDirectionValue.Clockwise_Positive));
   }
 
  public void setElevator(double power) {
