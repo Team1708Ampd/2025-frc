@@ -19,6 +19,7 @@ public class SetWristToAngle extends Command{
     public static final double SCORE_ANGLE = 5.810;
     public static final double TOP_SCORE_ANGLE = 12.426;
     public static final double INTAKE_ANGLE = 0;
+    private double speedSetpoint = 0;
 
     /** Creates a new SetWristToScore. */
     public SetWristToAngle(double angle) {
@@ -45,7 +46,6 @@ public class SetWristToAngle extends Command{
         } else {
             // Get the position difference
             double difference = (targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100));
-            double speedSetpoint = 0;
 
             if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
             {
@@ -84,18 +84,20 @@ public class SetWristToAngle extends Command{
     @Override
     public boolean isFinished() {
 
-        if (Robot.coralSub.wristSwitch.get() == false)
+        boolean rc = false;
+        if (speedSetpoint < 0 && Robot.coralSub.wristSwitch.get() == false)
         {
-            System.out.println("Limit");
-            return true;
+            rc = true;
+        }
+        else
+        {
+            if (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD)
+            {
+                System.out.println("Setpoint");
+                rc = true;
+            }
         }
 
-        if (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD)
-        {
-            System.out.println("Setpoint");
-            return true;
-        }
-
-        return false;
+        return rc;
     }
 }
