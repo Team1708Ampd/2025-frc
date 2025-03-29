@@ -47,6 +47,7 @@ public class SetWristToAngle extends Command{
             // Get the position difference
             double difference = (targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100));
 
+            speedSetpoint = 0;
             if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
             {
                 speedSetpoint = -HIGH_SPEED_NORMALIZED;        
@@ -83,21 +84,7 @@ public class SetWristToAngle extends Command{
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-
-        boolean rc = false;
-        if (speedSetpoint < 0 && Robot.coralSub.wristSwitch.get() == false)
-        {
-            rc = true;
-        }
-        else
-        {
-            if (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD)
-            {
-                System.out.println("Setpoint");
-                rc = true;
-            }
-        }
-
-        return rc;
+        return (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD || 
+        (targetAngle == 0 && !Robot.coralSub.wristSwitch.get())); 
     }
 }
