@@ -14,6 +14,6 @@ public class ScoreMiddleCoral extends SequentialCommandGroup {
   public ScoreMiddleCoral() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new SetWristToAngle(SetWristToAngle.SCORE_ANGLE), new GoToMiddleCoral());
+    addCommands(new SetWristToAngle(SetWristToAngle.SCORE_MID_ANGLE), new GoToMiddleCoral());
   }
 }
