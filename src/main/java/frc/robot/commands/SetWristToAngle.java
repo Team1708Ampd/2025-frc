@@ -49,6 +49,8 @@ public class SetWristToAngle extends Command{
             // Get the position difference
             double difference = (targetAngle - (Robot.coralSub.wristEncoder.getAbsolutePosition().getValueAsDouble() * 100));
 
+            System.out.println("Executing Wrist: " + difference);
+
             speedSetpoint = 0;
             if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD)
             {
@@ -65,7 +67,7 @@ public class SetWristToAngle extends Command{
             }
 
             // Set the sign based on direction that the wrist needs to move
-            if (difference > 0)
+            if (difference < 0)
             {
                 speedSetpoint = -speedSetpoint;
             }

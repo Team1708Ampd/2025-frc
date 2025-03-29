@@ -54,7 +54,7 @@ public class GoToTopCoral extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(targetAngle - (-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble())) <= FINAL_POSITION_THRESHOLD) {
+    if (Math.abs(targetAngle-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble()) <= FINAL_POSITION_THRESHOLD) {
       return true;
     }
     return false;

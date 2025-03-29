@@ -73,8 +73,8 @@ public class Robot extends TimedRobot {
     // System.out.println("TY: " + LimelightHelpers.getTY(""));
     // System.out.println("TA: " + LimelightHelpers.getTA(""));
     // System.out.println("Target ID: " + LimelightHelpers.getFiducialID(""));
-    System.out.println("Wrist position: " + Robot.coralSub.wristEncoder.getAbsolutePosition().getValueAsDouble());
-
+    System.out.println("Elevator position: " + Robot.coralSub.elevatorEncoder.getAbsolutePosition().getValueAsDouble());
+    System.out.println("Elevator position (Relative): " + Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble());
   }
 
   @Override

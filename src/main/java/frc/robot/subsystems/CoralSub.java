@@ -42,8 +42,13 @@ public class CoralSub extends SubsystemBase {
     elevatorEncoder.setPosition(0);
     CANcoderConfigurator config = wristEncoder.getConfigurator();
     config.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1)
-                                          .withMagnetOffset(0.662)
+                                          .withMagnetOffset(0.667)
                                           .withSensorDirection(SensorDirectionValue.Clockwise_Positive));
+    
+    CANcoderConfigurator encConfig = elevatorEncoder.getConfigurator();
+    encConfig.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1)
+                                             .withMagnetOffset(0.340)
+                                             .withSensorDirection(SensorDirectionValue.Clockwise_Positive));
   }
 
  public void setElevator(double power) {
