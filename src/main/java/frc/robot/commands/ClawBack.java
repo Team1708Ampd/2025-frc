@@ -22,8 +22,11 @@ public class ClawBack extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralSub.setWrist(-0.2);
-
+    // Dont move the wrist if the limit switch is tripped.
+    if (Robot.coralSub.wristSwitch.get() == true)
+    {
+      Robot.coralSub.setWrist(-0.2);
+    }  
   }
 
   // Called once the command ends or is interrupted.

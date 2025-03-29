@@ -73,6 +73,15 @@ public class Robot extends TimedRobot {
     // System.out.println("TY: " + LimelightHelpers.getTY(""));
     // System.out.println("TA: " + LimelightHelpers.getTA(""));
     // System.out.println("Target ID: " + LimelightHelpers.getFiducialID(""));
+    if (Robot.coralSub.wristSwitch.get() == false)
+    {
+        System.out.println("Limit Tripped");
+    }
+    else
+    {
+      System.out.println("Limit Open");
+    }
+
   }
 
   @Override

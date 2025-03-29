@@ -22,7 +22,9 @@ public class ClawForward extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // Dont move the wrist if the limit switch is tripped.
     Robot.coralSub.setWrist(0.2);
+    
   }
 
   // Called once the command ends or is interrupted.
