@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.configs.CANcoderConfigurator;
+import com.ctre.phoenix6.configs.MagnetSensorConfigs;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -37,6 +39,8 @@ public class CoralSub extends SubsystemBase {
     rightElevator.setNeutralMode(NeutralModeValue.Brake);
     intake.setNeutralMode(NeutralModeValue.Brake);
     elevatorEncoder.setPosition(0);
+    CANcoderConfigurator config = wristEncoder.getConfigurator();
+    config.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1) );
   }
 
  public void setElevator(double power) {
