@@ -34,6 +34,15 @@ public class ElevatorDownManual extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+
+    if (Robot.coralSub.elevatorSwitch.get() == false)
+    {
+      Robot.coralSub.elevatorEncoder.setPosition(0);
+      return true;
+    }
+    else
+    {
+      return false;
+    }    
   }
 }

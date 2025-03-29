@@ -84,6 +84,6 @@ public class SetWristToAngle extends Command{
     @Override
     public boolean isFinished() {
         return (Math.abs(targetAngle - (-Robot.coralSub.wristEncoder.getPosition().getValueAsDouble() * 100)) <= FINAL_POSITION_THRESHOLD || 
-        (targetAngle == 0 && !Robot.coralSub.wristSwitch.get())); 
+        (!Robot.coralSub.wristSwitch.get())); 
     }
 }
