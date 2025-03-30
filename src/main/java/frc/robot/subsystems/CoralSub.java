@@ -47,7 +47,7 @@ public class CoralSub extends SubsystemBase {
     
     CANcoderConfigurator encConfig = elevatorEncoder.getConfigurator();
     encConfig.apply(new MagnetSensorConfigs().withAbsoluteSensorDiscontinuityPoint(1)
-                                             .withMagnetOffset(0.340)
+                                             .withMagnetOffset(0.345)
                                              .withSensorDirection(SensorDirectionValue.Clockwise_Positive));
   }
 

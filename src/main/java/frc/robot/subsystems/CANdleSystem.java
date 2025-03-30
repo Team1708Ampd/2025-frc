@@ -9,7 +9,7 @@ import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 public class CANdleSystem extends SubsystemBase {
     
     private final int CANDLE_ID = 6; 
-    private final int NUM_LEDS = 204;
+    private final int NUM_LEDS = 151;
     private final String CAN_BUS = "rio";
     private final CANdle m_candle_1 = new CANdle(CANDLE_ID, CAN_BUS);
 
@@ -23,7 +23,7 @@ public class CANdleSystem extends SubsystemBase {
         CANdleConfiguration config = new CANdleConfiguration();
         config.stripType = LEDStripType.RGB;
         config.statusLedOffWhenActive = true;
-        config.brightnessScalar = 1;
+        config.brightnessScalar = 0.5;
         config.vBatOutputMode = VBatOutputMode.On;
         config.disableWhenLOS = true;
         m_candle_1.configAllSettings(config, 100);

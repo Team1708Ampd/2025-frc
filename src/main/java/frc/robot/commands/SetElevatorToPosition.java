@@ -6,18 +6,18 @@ import frc.robot.Robot;
 public class SetElevatorToPosition extends Command {
   private double targetAngle = 0;
   public static final double ELEVATOR_BOTTOM = 0;
-  public static final double ELEVATOR_LOW_CORAL = 0;
-  public static final double ELEVATOR_MID_CORAL = 0;
-  public static final double ELEVATOR_HIGH_CORAL = 0;
+  public static final double ELEVATOR_LOW_CORAL = 0.866;
+  public static final double ELEVATOR_MID_CORAL = 2.526;
+  public static final double ELEVATOR_HIGH_CORAL = 5.012;
 
-  private final double HS_MOVEMENT_THRESHOLD = 1;
-  private final double LS_MOVEMENT_THRESHOLD = 0.3;
-  private final double FINAL_POSITION_THRESHOLD = 0.1;
+  private final double HS_MOVEMENT_THRESHOLD = 4; // 1
+  private final double LS_MOVEMENT_THRESHOLD = 0.3; // 0.3
+  private final double FINAL_POSITION_THRESHOLD = 0.01; // 0.1
 
-  private final double HIGH_SPEED = 0.6;
-  private final double LOW_SPEED = 0.4;
-  private final double FINAL_SPEED = 0.17;
-  private final double DOWN_SPEED = -0.1;
+  private final double HIGH_SPEED = 0.6; // 0.6
+  private final double LOW_SPEED = 0.4; // 0.4
+  private final double FINAL_SPEED = 0.17; // 0.17
+  private final double DOWN_SPEED = -0.35;
   /** Creates a new GoToBottomCoral. */
   public SetElevatorToPosition(double Target) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -35,7 +35,7 @@ public class SetElevatorToPosition extends Command {
     if ((Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble()) > targetAngle) {
       Robot.coralSub.setElevator(DOWN_SPEED);
     } else {
-      double difference = targetAngle - (-Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble());
+      double difference = targetAngle - (Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble());
       if (Math.abs(difference) > HS_MOVEMENT_THRESHOLD) {
         Robot.coralSub.setElevator(HIGH_SPEED);
       } else if (Math.abs(difference) > LS_MOVEMENT_THRESHOLD) {
