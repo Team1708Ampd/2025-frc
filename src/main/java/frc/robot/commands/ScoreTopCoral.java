@@ -14,6 +14,7 @@ public class ScoreTopCoral extends SequentialCommandGroup {
   public ScoreTopCoral() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new SetWristToAngle(SetWristToAngle.SCORE_TOP_ANGLE), new GoToTopCoral());
+    addCommands(new SetWristToAngle(SetWristToAngle.SCORE_TOP_ANGLE), 
+                new SetElevatorToPosition(SetElevatorToPosition.ELEVATOR_HIGH_CORAL));
   }
 }

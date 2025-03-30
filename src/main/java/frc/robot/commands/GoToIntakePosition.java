@@ -14,6 +14,7 @@ public class GoToIntakePosition extends SequentialCommandGroup {
   public GoToIntakePosition() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new GoToElevatorBottom(), new SetWristToAngle(SetWristToAngle.INTAKE_ANGLE));
+    addCommands(new SetElevatorToPosition(SetElevatorToPosition.ELEVATOR_BOTTOM), 
+                new SetWristToAngle(SetWristToAngle.INTAKE_ANGLE));
   }
 }
