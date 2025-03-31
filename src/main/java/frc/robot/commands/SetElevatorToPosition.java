@@ -17,7 +17,7 @@ public class SetElevatorToPosition extends Command {
   private final double HIGH_SPEED = 0.6; // 0.6
   private final double LOW_SPEED = 0.4; // 0.4
   private final double FINAL_SPEED = 0.17; // 0.17
-  private final double DOWN_SPEED = -0.35;
+  private final double DOWN_SPEED = -0.2438;
   /** Creates a new GoToBottomCoral. */
   public SetElevatorToPosition(double Target) {
     // Use addRequirements() here to declare subsystem dependencies.

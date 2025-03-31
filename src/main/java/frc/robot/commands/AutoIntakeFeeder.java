@@ -34,6 +34,6 @@ public class AutoIntakeFeeder extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Robot.coralSub.getBeam();
+    return !Robot.coralSub.getBeam();
   }
 }

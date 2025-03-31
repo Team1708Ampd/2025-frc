@@ -15,10 +15,14 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AlignToReef;
+import frc.robot.commands.AutoIntake;
+import frc.robot.commands.AutoIntakeFeeder;
 import frc.robot.commands.ClawBack;
 import frc.robot.commands.ClawForward;
 import frc.robot.commands.ClimbBrakeOff;
@@ -70,11 +74,15 @@ public class RobotContainer {
     public RobotContainer() {
         configureBindings();
 
+        registerNamedCommands();
         initAuto();
 
-        // Register the commands for the autos
-        registerNamedCommands();
+        drivetrain.initPathPlannerConfig();
+        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+        CommandScheduler.getInstance().schedule(getAutonomousCommand());
+        SmartDashboard.putData("Auto Chooser", autoChooser);
 
+        // Register the commands for the autos
         // Schedule the selected auto
         CommandScheduler.getInstance().schedule(getAutonomousCommand());
     }
@@ -114,6 +122,7 @@ public class RobotContainer {
 
     public void initAuto()
     {
+        registerNamedCommands();
         // Initialize PathPlanner config 
         drivetrain.initPathPlannerConfig();
 
@@ -122,7 +131,7 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser();
 
         // Register named commands to be referenced in auto 
-        registerNamedCommands();
+        SmartDashboard.putData("Auto Chooser", autoChooser);
     }
 
     public Command getAutonomousCommand()
@@ -133,18 +142,20 @@ public class RobotContainer {
     private void registerNamedCommands()
     {
         // Gotta Register Em All 
+        NamedCommands.registerCommand("AutoIntakeFeeder", new AutoIntakeFeeder());
         NamedCommands.registerCommand("ScoreTopCoral",    new ScoreTopCoral());
         NamedCommands.registerCommand("ScoreMiddleCoral", new ScoreMiddleCoral());
         NamedCommands.registerCommand("ScoreBottomCoral", new ScoreBottomCoral());
-        NamedCommands.registerCommand("CoralIntake",      new CoralIntake());
+        NamedCommands.registerCommand("AutoIntake",       new AutoIntake());
         NamedCommands.registerCommand("CoralOuttake",     new CoralOuttake());
-        NamedCommands.registerCommand("GoToIntakePos",    new GoToIntakePosition());
+        NamedCommands.registerCommand("GoToIntakePosition",new GoToIntakePosition());
         NamedCommands.registerCommand("LowerActuators",   new LowerActuators());
         NamedCommands.registerCommand("RaiseActuators",   new RaiseActuators());
         NamedCommands.registerCommand("ClawForward",      new ClawForward());
         NamedCommands.registerCommand("ClawBack",         new ClawBack());
         NamedCommands.registerCommand("CimberForward",    new ClimberForward());
         NamedCommands.registerCommand("ClimberBack",      new ClimberBack());      
-
+        NamedCommands.registerCommand("AlignToReef_Left", new AlignToReef(false, drivetrain));
+        NamedCommands.registerCommand("AlignToReef_Right", new AlignToReef(true, drivetrain));
     }
 }

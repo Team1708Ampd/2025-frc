@@ -7,7 +7,50 @@
         {
           "type": "path",
           "data": {
-            "pathName": null
+            "pathName": "Blue 1 to Coral 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "GoToIntakePosition"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Coral 1 to feeder"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntakeFeeder"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Feeder to coral 2"
           }
         },
         {
@@ -29,7 +72,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Last Coral to Feeder 2"
+                  "pathName": "coral 2 to feeder"
                 }
               },
               {
@@ -50,44 +93,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Feeder 2 to Coral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ScoreTopCoral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoIntake"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Coral to Feeder 2"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "GoToIntakePosition"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoIntakeFeeder"
+            "pathName": "Feeder to coral 3"
           }
         }
       ]
