@@ -17,7 +17,7 @@ public class SetElevatorToPosition extends Command {
   private final double HIGH_SPEED = 0.6; // 0.6
   private final double LOW_SPEED = 0.4; // 0.4
   private final double FINAL_SPEED = 0.17; // 0.17
-  private final double DOWN_SPEED = -0.2438;
+  private final double DOWN_SPEED = -0.28;
   /** Creates a new GoToBottomCoral. */
   public SetElevatorToPosition(double Target) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -49,12 +49,19 @@ public class SetElevatorToPosition extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.coralSub.setElevator(0.03);
+    if(targetAngle != 0) {
+      Robot.coralSub.setElevator(0.03);
+    } else {
+      Robot.coralSub.setElevator(0);
+    }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
+    if (targetAngle == 0 && !Robot.coralSub.elevatorSwitch.get()) return true;
+
     boolean rc = false;
 
     if (Math.abs(targetAngle - (Robot.coralSub.elevatorEncoder.getPosition().getValueAsDouble())) <= FINAL_POSITION_THRESHOLD) 

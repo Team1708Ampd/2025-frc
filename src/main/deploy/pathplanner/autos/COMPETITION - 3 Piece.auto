@@ -95,6 +95,18 @@
           "data": {
             "pathName": "Feeder to coral 3"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ScoreTopCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoIntake"
+          }
         }
       ]
     }

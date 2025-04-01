@@ -18,7 +18,7 @@ public class SetWristToAngle extends Command{
 
     public static final double SCORE_LOW_ANGLE = 6.39;
     public static final double SCORE_MID_ANGLE = 8.89;
-    public static final double SCORE_TOP_ANGLE = 15.60;
+    public static final double SCORE_TOP_ANGLE = 15.9;
     public static final double INTAKE_ANGLE = 0;
 
     private double speedSetpoint = 0;
