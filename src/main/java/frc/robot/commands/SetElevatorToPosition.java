@@ -6,8 +6,8 @@ import frc.robot.Robot;
 public class SetElevatorToPosition extends Command {
   private double targetAngle = 0;
   public static final double ELEVATOR_BOTTOM = 0;
-  public static final double ELEVATOR_LOW_CORAL = 0.866;
-  public static final double ELEVATOR_MID_CORAL = 2.526;
+  public static final double ELEVATOR_LOW_CORAL = 1.066;
+  public static final double ELEVATOR_MID_CORAL = 2.726;
   public static final double ELEVATOR_HIGH_CORAL = 5.012;
 
   private final double HS_MOVEMENT_THRESHOLD = 4; // 1
